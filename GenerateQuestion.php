@@ -132,6 +132,9 @@ if (isset($_SESSION['log_in']) && isset($_SESSION['log_in']) == true) {
                                 if ($_GET['success'] == "clear") {
                                     echo '<p class="success">All Old Exam Data is Clear</p>';
                                 }
+                                if ($_GET['success'] == "add") {
+                                    echo '<p class="success">Question Added To Exam</p>';
+                                }
                             }
                             ?>
                             <div class="form-group">
@@ -179,7 +182,7 @@ if (isset($_SESSION['log_in']) && isset($_SESSION['log_in']) == true) {
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Negative Marking</label>
-                                <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Enter Negative Marks" name="neg_marks">
+                                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Negative Marks" name="neg_marks">
                             </div>
                             <button type="submit" class="btn btn-danger btn-block" name="Clear_exam" formmethod="POST" formaction="includes/ClearDB.inc.php">Clear Old Exam From Database</button>
                             <button type="submit" class="btn btn-primary btn-block" name="add_exam" formmethod="POST" formaction="includes/GenerateQuestion.inc.php">Add</button>
