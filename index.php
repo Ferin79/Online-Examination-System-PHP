@@ -70,7 +70,7 @@ $admin = "ferinpatel79@gmail.com";
                             {   
                   ?>
                         <li class="nav-item">
-                        <a class="nav-link" href="#">Take Exam</a>
+                        <a class="nav-link" href="GenerateQuestion.php">Take Exam</a>
                         </li>
                   <?php
                             }
@@ -113,7 +113,7 @@ $admin = "ferinpatel79@gmail.com";
                   ?>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Developer</a>
+                    <a class="nav-link" href="https://www.ferinpatel.ml">Developer</a>
                 </li>
 
             </ul>

@@ -17,12 +17,13 @@
         if(!mysqli_stmt_prepare($stmt,$query))
         {
             echo "SQL Error";
+            header("Location:../AddQuestion.php?error=fail");    
         }
         else 
         {
             mysqli_stmt_bind_param($stmt,"ssssssss",$classid,$subjectid,$chapterid,$ques_type,$answer,$marks,$ques_img,$sol_img);
             mysqli_stmt_execute($stmt);
-            header("Location:../AddQuestion.php");    
+            header("Location:../AddQuestion.php?success=add");    
         }
     }
     else {

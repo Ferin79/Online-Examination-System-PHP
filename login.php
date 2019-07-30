@@ -1,4 +1,5 @@
 <?php
+session_start();
 if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) 
 {
     header("Location:/index.php");
@@ -73,7 +74,7 @@ else
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Developer</a>
+                    <a class="nav-link" href="https://www.ferinpatel.ml">Developer</a>
                 </li>
 
             </ul>
@@ -96,6 +97,9 @@ else
                                 echo '<p class="error">NO ACCOUNT FOUND!!!!!</p>';
                             } else if ($_GET['error'] == "accessdenied") {
                                 echo '<p class="error">You Need Admin Acoount to Access This Page</p>';
+                            }
+                            else if ($_GET['error'] == "loginplease") {
+                                echo '<p class="error">Please Login</p>';
                             }
                         }
                         ?>

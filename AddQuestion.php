@@ -43,6 +43,17 @@ if (isset($_SESSION['log_in']) && isset($_SESSION['log_in']) == true) {
                 {
 	                max-width: 200px;
                 }
+                .error {
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: red;
+                }
+
+                .success {
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: green;
+                }
             </style>
         </head>
 
@@ -65,7 +76,7 @@ if (isset($_SESSION['log_in']) && isset($_SESSION['log_in']) == true) {
                         if ($_SESSION['email'] == $admin) {
                             ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Take Exam</a>
+                                <a class="nav-link" href="GenerateQuestion.php">Take Exam</a>
                             </li>
                         <?php
                         }
@@ -104,7 +115,7 @@ if (isset($_SESSION['log_in']) && isset($_SESSION['log_in']) == true) {
                     ?>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Developer</a>
+                        <a class="nav-link" href="https://www.ferinpatel.ml">Developer</a>
                     </li>
 
                 </ul>
@@ -114,7 +125,21 @@ if (isset($_SESSION['log_in']) && isset($_SESSION['log_in']) == true) {
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-6 col-md-3">
                     <form class="form-container" action="includes/AddQuestion.inc.php" method="POST" enctype='multipart/form-data'>
-                        <h3 class="text-center font-weight-bold" style="color:blue">Add Question</h3>
+                        <h3 class="text-center font-weight-bold" style="color:blue;font-size:50px;">Add Question</h3>
+                        <?php
+                            if (isset($_GET['success'])) {
+                                if ($_GET['success'] == "add") {
+                                    echo '<p class="success">Question Added Successfully into Database</p>';
+                                }
+                            }
+                            else if(isset($_GET['error']))
+                            {
+                                if($_GET['error'] == "fail")
+                                {
+                                    echo '<p class="error">SQL Error. Data Entry Failed</p>';
+                                }
+                            }
+                            ?>
                         <div class="form-group">
                             <label>Select Class</label>
                             <select id="classid" name="classid" class="classid form-control" onchange="affect_subject()">
@@ -234,7 +259,7 @@ if (isset($_SESSION['log_in']) && isset($_SESSION['log_in']) == true) {
         header("Location:/login.php?error=accessdenied");
     }
 } else {
-    header("Location:/login.php");
+    header("Location:/login.php?error=loginplease");
     exit();
 }
 ?>

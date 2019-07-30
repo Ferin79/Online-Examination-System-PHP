@@ -65,7 +65,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">Developer</a>
+                <a class="nav-link" href="https://www.ferinpatel.ml">Developer</a>
             </li>
 
         </ul>
