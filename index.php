@@ -1,5 +1,6 @@
 <?php
 session_start();
+$admin = "ferinpatel79@gmail.com";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,6 +50,45 @@ session_start();
                 <li class="nav-item">
                     <a class="nav-link" href="#">Online Exam</a>
                 </li>
+                <?php
+                        if(isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
+                        {
+                            if($_SESSION['email'] == $admin)
+                            {   
+                  ?>
+                        <li class="nav-item">
+                        <a class="nav-link" href="/AddQuestion.php">Add Question</a>
+                        </li>
+                  <?php
+                            }
+                        }
+                  ?>
+                  <?php
+                        if(isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
+                        {
+                            if($_SESSION['email'] == $admin)
+                            {   
+                  ?>
+                        <li class="nav-item">
+                        <a class="nav-link" href="#">Take Exam</a>
+                        </li>
+                  <?php
+                            }
+                        }
+                  ?>
+                   <?php
+                        if(isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
+                        {
+                            if($_SESSION['email'] == $admin)
+                            {   
+                  ?>
+                        <li class="nav-item">
+                        <a class="nav-link" href="#">See Result</a>
+                        </li>
+                  <?php
+                            }
+                        }
+                  ?>
                   <?php
                         if(isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
                         {
@@ -84,7 +124,7 @@ session_start();
             if(isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
             {
                   ?>
-                  <h2 class="welcome">Welcome <?php echo $_SESSION['name'] ?></h2>
+                  <h2 class="welcome">Welcome <?php echo $_SESSION['email'] ?></h2>
                   <?php
             }
             else 
