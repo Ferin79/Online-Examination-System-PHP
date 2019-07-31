@@ -84,7 +84,7 @@ else
         <br>
         <br>
         <br>
-        <div class="conatiner-fluid">
+        <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-6 col-md-3">
                     <form class="form-container" action="includes/login.inc.php" method="POST">

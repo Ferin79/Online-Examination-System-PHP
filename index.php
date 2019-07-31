@@ -92,6 +92,19 @@ $admin = "ferinpatel79@gmail.com";
                   <?php
                         if(isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
                         {
+                            if($_SESSION['email'] == $admin)
+                            {   
+                  ?>
+                        <li class="nav-item">
+                        <a class="nav-link" href="confirmAdmin.php">Edit Confirm</a>
+                        </li>
+                  <?php
+                            }
+                        }
+                  ?>
+                  <?php
+                        if(isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
+                        {
                   ?>
                         <li class="nav-item">
                         <a class="nav-link" href="includes/logout.inc.php">Logout</a>
