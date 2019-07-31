@@ -13,8 +13,6 @@ if(isset($_POST['Clear_exam']))
     else 
     {
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
-        mysqli_close($conn);
     }
 
     $query = "TRUNCATE TABLE `curr_exam`;";
@@ -27,8 +25,6 @@ if(isset($_POST['Clear_exam']))
     else 
     {
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
-        mysqli_close($conn);
     }
 
     $query = "TRUNCATE TABLE `neg_marks`;";
@@ -41,8 +37,6 @@ if(isset($_POST['Clear_exam']))
     else 
     {
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
-        mysqli_close($conn);
     }
 
     $query = "TRUNCATE TABLE `exam_info`;";
@@ -55,8 +49,6 @@ if(isset($_POST['Clear_exam']))
     else 
     {
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
-        mysqli_close($conn);
     }
     header("Location:../GenerateQuestion.php?success=clear");
 }
