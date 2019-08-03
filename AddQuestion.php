@@ -11,16 +11,20 @@ if (isset($_SESSION['log_in']) && isset($_SESSION['log_in']) == true) {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
             <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
             <title>Add Question</title>
             <style>
                 body {
                     padding: 0px;
                     margin: 0px;
                     background: url("images/background.jpg");
-                    background-repeat: :no-repeat;
+                    background-position: center;
+                    background-repeat: no-repeat;
                     background-size: cover;
                 }
 
@@ -62,6 +66,10 @@ if (isset($_SESSION['log_in']) && isset($_SESSION['log_in']) == true) {
                 <h1>CAREER EDUCATION</h1>
             </div>
             <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
+                    <span class="navbar-toggler-icon"> </span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapse_target">
                 <ul class="navbar-nav">
 
                     <li class="nav-item">
@@ -121,11 +129,12 @@ if (isset($_SESSION['log_in']) && isset($_SESSION['log_in']) == true) {
                 </ul>
                 </div>
             </nav>
+            <br>
             <div class="conatiner-fluid">
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-6 col-md-3">
                     <form class="form-container" action="includes/AddQuestion.inc.php" method="POST" enctype='multipart/form-data'>
-                        <h3 class="text-center font-weight-bold" style="color:blue;font-size:50px;">Add Question</h3>
+                        <h3 class="text-center" style="color:lightblack;font-size:50px;">Add Question</h3>
                         <?php
                             if (isset($_GET['success'])) {
                                 if ($_GET['success'] == "add") {
@@ -214,6 +223,9 @@ if (isset($_SESSION['log_in']) && isset($_SESSION['log_in']) == true) {
                     </form>
                 </div>
             </div>
+            <br>
+            <br>
+            <br>
             <script>
                 function affect_subject()
                 {
