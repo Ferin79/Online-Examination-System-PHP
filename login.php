@@ -74,7 +74,7 @@ else
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Online Exam</a>
+                    <a class="nav-link" href="confirm.php">Online Exam</a>
                 </li>
 
                 <li class="nav-item">

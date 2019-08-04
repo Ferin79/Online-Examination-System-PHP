@@ -55,7 +55,7 @@ $admin = "ferinpatel79@gmail.com";
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="confirm.php">Online Exam</a>
+                    <a class="nav-link" href="#">Online Exam</a>
                 </li>
                 <?php
                         if(isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
@@ -139,22 +139,16 @@ $admin = "ferinpatel79@gmail.com";
             </ul>
         </div>
     </nav>
-    <div class="hi">
-        <?php
-            if(isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
-            {
-                  ?>
-                  <h2 class="welcome">Welcome <?php echo $_SESSION['email'] ?></h2>
-                  <?php
-            }
-            else 
-            {
-                  ?>
-                  <h2 class="welcome">Welcome To Career Education</h2>
-                  <?php 
-            }
-        ?>
+    <br>
+    <br>
+    <br>
+    <div>
+        <h1>Sorry You Can Apper For Exam Once Only !!! </h1>
     </div>
+    <div style="width:100%;height:100%;position:absolute;left:35%;top:50%;"><iframe src="images/only_once.gif" width="75%" height="75%" style="position:absolute" frameBorder="0" class="giphy-embed"></iframe></div>
+    <br>
+    <br>
+    <br>
 </body>
 
 </html>

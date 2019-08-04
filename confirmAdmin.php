@@ -168,8 +168,8 @@ if (isset($_SESSION['log_in']) && isset($_SESSION['log_in']) == true) {
                             </div>
 
                             <div class="form-group">
-                            <label for="exampleInputEmail3">Total Exam Timing (in SEC)</label>
-                            <input type="number" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter Exam Time In SECOND" name="exam_time">
+                            <label for="exampleInputEmail3">Total Exam Timing (in MIN)</label>
+                            <input type="number" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter Exam Time In MINUTES" name="exam_time">
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-block" name="submit_confirm">Save Confrim Page</button>
