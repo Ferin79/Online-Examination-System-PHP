@@ -9,6 +9,15 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
     } else {
         $page = 1;
     }
+    $query = "SELECT * FROM exam_live;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+        echo "SQL Error";
+    } else {
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $rows = mysqli_num_rows($result);
+    }
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -41,12 +50,6 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
                 background: #fff;
             }
 
-            .form-container {
-                border-radius: 20px;
-                padding: 30px;
-                box-shadow: 0px 0px 10px 0px;
-            }
-
             .error {
                 font-size: 15px;
                 color: red;
@@ -71,7 +74,36 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
             tr td {
                 border: 2px solid black;
             }
+
+            input[type=radio] {
+                width: 20px;
+                height: 20px;
+            }
+
+            label {
+                font-size: 30px;
+            }
+            .link 
+            {
+                font: bold 1rem Arial;
+                text-decoration: none;
+                background-color: #ffc107;
+                color: black;
+                font-weight:400;
+                padding: 8px;
+                border-top: 1px solid #CCCCCC;
+                border-right: 1px solid #333333;
+                border-bottom: 1px solid #333333;
+                border-left: 1px solid #CCCCCC;
+                border-radius: .25rem;
+            }
         </style>
+        <script>
+            function clearResponse()
+            {
+                document.getElementById("optionDefault").checked = true;
+            }
+        </script>
     </head>
 
     <body>
@@ -123,12 +155,48 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
                             <?php
                             }
                             ?>
-                            <li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 1); ?>"><?php echo ($page + 1) ?></a></li>
-                            <li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 2); ?>"><?php echo ($page + 2) ?></a></li>
-                            <li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 3); ?>"><?php echo ($page + 3) ?></a></li>
-                            <li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 4); ?>"><?php echo ($page + 4) ?></a></li>
-                            <li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 5); ?>"><?php echo ($page + 5) ?></a></li>
-                            <li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 1); ?>">Next</a></li>
+                            <?php
+                            if ($page + 1 <= $rows) {
+                                ?>
+                                <li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 1); ?>"><?php echo ($page + 1) ?></a></li>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($page + 2 <= $rows) {
+                                ?>
+                                <li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 2); ?>"><?php echo ($page + 2) ?></a></li>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($page + 3 <= $rows) {
+                                ?>
+                                <li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 3); ?>"><?php echo ($page + 3) ?></a></li>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($page + 4 <= $rows) {
+                                ?>
+                                <li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 4); ?>"><?php echo ($page + 4) ?></a></li>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($page + 5 <= $rows) {
+                                ?>
+                                <li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 5); ?>"><?php echo ($page + 5) ?></a></li>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($page + 6 <= $rows) {
+                                ?>
+                                <li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 1); ?>">Next</a></li>
+                            <?php
+                            }
+                            ?>
                         </ul>
                     </nav>
                 </div>
@@ -147,49 +215,43 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
                                 <td>Question</td>
                             </tr>
                             <?php
-                            echo "this is page " . $page;
-                            $len = 1;
-                            $query = "SELECT * FROM exam_question;";
+                            $page--;
+                            $query = "SELECT * FROM exam_live LIMIT $page,1;";
+                            $page++;
                             $stmt = mysqli_stmt_init($conn);
                             mysqli_stmt_prepare($stmt, $query);
                             mysqli_stmt_execute($stmt);
                             $result = mysqli_stmt_get_result($stmt);
                             while ($rows = mysqli_fetch_assoc($result)) {
-                                $query = "SELECT * FROM questionmaster WHERE questionid = ?;";
-                                $stmt = mysqli_stmt_init($conn);
-                                mysqli_stmt_prepare($stmt, $query);
-                                mysqli_stmt_bind_param($stmt, "s", $rows['questionid']);
-                                mysqli_stmt_execute($stmt);
-                                $result1 = mysqli_stmt_get_result($stmt);
-                                while ($ferin = mysqli_fetch_assoc($result1)) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $page ?></td>
+                                    <?php
+                                    echo '<td><img class="img-fluid" src="data:image/jpeg;base64,' . base64_encode($rows['ques_pic']) . '" /></td>';
                                     ?>
-                                    <tr>
-                                        <td><?php echo $len ?></td>
-                                        <?php
-                                        echo '<td><img src="data:image/jpeg;base64,' . base64_encode($ferin["ques_pic"]) . '"/></td>';
-                                        $len = $len + 1;
-                                        ?>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>
-                                            <input type="radio"><label>A</label>
-                                            <input type="radio"><label>B</label>
-                                            <br>
-                                            <input type="radio"><label>C</label>
-                                            <input type="radio"><label>D</label>
-                                        </td>
-                                    </tr>
-                                <?php
-                                }
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <input type="radio" id="optionA" value="1" name="<?php echo $page ?>"><label for="optionA">A</label>
+                                        <br>
+                                        <input type="radio" id="optionB" value="2" name="<?php echo $page ?>"><label for="optionB">B</label>
+                                        <br>
+                                        <input type="radio" id="optionC" value="3" name="<?php echo $page ?>"><label for="optionC">C</label>
+                                        <br>
+                                        <input type="radio" id="optionD" value="4" name="<?php echo $page ?>"><label for="optionD">D</label>
+                                        <br>
+                                        <input type="radio" id="optionDefault" checked value="0" style="visibility:hidden;" name="<?php echo $page ?>"><label style="visibility:hidden;" for="optionDefault">Default</label>
+                                    </td>
+                                </tr>
+                            </table>
+                            <?php
                             }
                             ?>
-                        </table>
-                        <button class="btn btn-success">Previous Question</button>
-                        <button class="btn btn-success">Next Question</button>
-                        <br>
-                        <br>
-                        <button class="btn btn-primary">Submit Exam</button>
+                    <div class="option">
+                         <p><a class="link" href="#" onClick="clearResponse()">Clear Response</a></p>
+                        <button onclick="saveExit()" class="btn btn-primary ">Save and Exit</button>
+                    </div>
                     </form>
                 </div>
             </div>

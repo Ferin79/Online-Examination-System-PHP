@@ -39,7 +39,7 @@ if(isset($_POST['Clear_exam']))
         mysqli_stmt_execute($stmt);
     }
 
-    $query = "TRUNCATE TABLE `exam_info`;";
+    $query = "TRUNCATE TABLE `exam_live`;";
     
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt,$query))

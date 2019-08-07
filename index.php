@@ -21,7 +21,7 @@ $admin = "ferinpatel79@gmail.com";
         {
             padding:0px;
             margin:0px;
-            background: url("images/background.jpg") no-repeat;
+            background: url("images/back.jpg") no-repeat 50% 50%;
             background-size:center;
         }
         .logo {
@@ -31,6 +31,7 @@ $admin = "ferinpatel79@gmail.com";
         .welcome 
         {
             font-size: 40px;
+            color:#007bff;
             position: absolute;
             top:50%;
             left:50%;
