@@ -4,11 +4,6 @@ $flag = 0;
 $email = $_SESSION['email'];
 require 'includes/db.inc.php';
 if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
-    if (isset($_GET['page'])) {
-        $page = $_GET['page'];
-    } else {
-        $page = 1;
-    }
     $query = "SELECT * FROM exam_live;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $query)) {
@@ -18,6 +13,28 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
         $result = mysqli_stmt_get_result($stmt);
         $rows = mysqli_num_rows($result);
     }
+    if (isset($_GET['page'])) 
+    {
+        $page = $_GET['page'];
+        $fetchmcq = $_SESSION['mcqOption'];
+        $cookieget = $_COOKIE['optionselect'];
+        $fetchmcq[$page-2] = $cookieget;
+        for($i=0;$i<$rows;$i++)
+        {
+            echo " ".$fetchmcq[$i];
+        }
+        $_SESSION['mcqOption'] = $fetchmcq;
+    } 
+    else 
+    {
+        $page = 1;
+        $_SESSION['mcqOption'] = array(); 
+        for($i = 0;$i<=$rows;$i++)
+        {
+            array_push($_SESSION['mcqOption'],"-1");
+        }
+    }
+    
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -99,9 +116,14 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
             }
         </style>
         <script>
-            function clearResponse()
+            var ans;
+            function SaveOption(option)
             {
-                document.getElementById("optionDefault").checked = true;
+                ans = option;
+            }
+            function SaveAndNext()
+            {
+                document.cookie = "optionselect = "+ans.value;
             }
         </script>
     </head>
@@ -213,6 +235,7 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
                             <tr>
                                 <td>#</td>
                                 <td>Question</td>
+                                <td>Marks</td>
                             </tr>
                             <?php
                             $page--;
@@ -229,28 +252,28 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
                                     <?php
                                     echo '<td><img class="img-fluid" src="data:image/jpeg;base64,' . base64_encode($rows['ques_pic']) . '" /></td>';
                                     ?>
+                                    <td><?php echo $rows["mark"]?></td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td>
-                                        <input type="radio" id="optionA" value="1" name="<?php echo $page ?>"><label for="optionA">A</label>
+                                        <input type="radio" id="optionA" value="1" onclick="SaveOption(this)"  name='<?php echo "ferin".$page ?>'><label for="optionA">A</label>
                                         <br>
-                                        <input type="radio" id="optionB" value="2" name="<?php echo $page ?>"><label for="optionB">B</label>
+                                        <input type="radio" id="optionB" value="2" onclick="SaveOption(this)"  name='<?php echo "ferin".$page ?>'><label for="optionB">B</label>
                                         <br>
-                                        <input type="radio" id="optionC" value="3" name="<?php echo $page ?>"><label for="optionC">C</label>
+                                        <input type="radio" id="optionC" value="3" onclick="SaveOption(this)"  name='<?php echo "ferin".$page ?>'><label for="optionC">C</label>
                                         <br>
-                                        <input type="radio" id="optionD" value="4" name="<?php echo $page ?>"><label for="optionD">D</label>
-                                        <br>
-                                        <input type="radio" id="optionDefault" checked value="0" style="visibility:hidden;" name="<?php echo $page ?>"><label style="visibility:hidden;" for="optionDefault">Default</label>
-                                    </td>
+                                        <input type="radio" id="optionD" value="4" onclick="SaveOption(this)"  name='<?php echo "ferin".$page ?>'><label for="optionD">D</label>
+                                        </td>
+                                    <td></td>
                                 </tr>
                             </table>
                             <?php
                             }
                             ?>
                     <div class="option">
-                         <p><a class="link" href="#" onClick="clearResponse()">Clear Response</a></p>
-                        <button onclick="saveExit()" class="btn btn-primary ">Save and Exit</button>
+                         <p><a onclick="clearResponse()" class="btn btn-warning" href="#">Clear Response</a></p>
+                        <p><a onclick="SaveAndNext()" href="?page=<?php echo $page+1 ?>" class="btn btn-primary">Save and Next</a></p>
                     </div>
                     </form>
                 </div>

@@ -30,7 +30,7 @@ $admin = "ferinpatel79@gmail.com";
         }
         .welcome 
         {
-            font-size: 40px;
+            font-size: 55px;
             color:#007bff;
             position: absolute;
             top:50%;
