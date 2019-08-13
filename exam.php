@@ -17,13 +17,10 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
     {
         $page = $_GET['page'];
         $fetchmcq = $_SESSION['mcqOption'];
-        $cookieget = $_COOKIE['optionselect'];
-        $fetchmcq[$page-2] = $cookieget;
-        for($i=0;$i<$rows;$i++)
+        for($i=0;$i<=$rows;$i++)
         {
-            echo " ".$fetchmcq[$i];
+            echo $fetchmcq[$i];
         }
-        $_SESSION['mcqOption'] = $fetchmcq;
     } 
     else 
     {
@@ -124,6 +121,16 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
             function SaveAndNext()
             {
                 document.cookie = "optionselect = "+ans.value;
+                <?php 
+                    $fetchmcq = $_SESSION['mcqOption'];
+                    $cookieget = $_COOKIE['optionselect'];
+                    $fetchmcq[$page-2] = $cookieget;
+                    $_SESSION['mcqOption'] = $fetchmcq;
+                ?>
+            }
+            function SkipAndNext()
+            {
+                
             }
         </script>
     </head>
@@ -272,7 +279,7 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
                             }
                             ?>
                     <div class="option">
-                         <p><a onclick="clearResponse()" class="btn btn-warning" href="#">Clear Response</a></p>
+                         <p><a onclick="SkipAndNext()" class="btn btn-warning" href="#">Skip And Next</a></p>
                         <p><a onclick="SaveAndNext()" href="?page=<?php echo $page+1 ?>" class="btn btn-primary">Save and Next</a></p>
                     </div>
                     </form>
