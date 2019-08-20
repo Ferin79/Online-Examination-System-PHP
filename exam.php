@@ -3,33 +3,28 @@ session_start();
 $flag = 0;
 $email = $_SESSION['email'];
 require 'includes/db.inc.php';
-if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
+if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) 
+{
     $query = "SELECT * FROM exam_live;";
     $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $query)) {
+    if (!mysqli_stmt_prepare($stmt, $query)) 
+    {
         echo "SQL Error";
-    } else {
+    } 
+    else 
+    {
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         $rows = mysqli_num_rows($result);
+        $len = $rows;
     }
     if (isset($_GET['page'])) 
     {
         $page = $_GET['page'];
-        $fetchmcq = $_SESSION['mcqOption'];
-        for($i=0;$i<=$rows;$i++)
-        {
-            echo $fetchmcq[$i];
-        }
     } 
     else 
     {
         $page = 1;
-        $_SESSION['mcqOption'] = array(); 
-        for($i = 0;$i<=$rows;$i++)
-        {
-            array_push($_SESSION['mcqOption'],"-1");
-        }
     }
     
     ?>
@@ -40,6 +35,9 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script>
+            window.history.forward();
+        </script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -97,13 +95,13 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
             label {
                 font-size: 30px;
             }
-            .link 
-            {
+
+            .link {
                 font: bold 1rem Arial;
                 text-decoration: none;
                 background-color: #ffc107;
                 color: black;
-                font-weight:400;
+                font-weight: 400;
                 padding: 8px;
                 border-top: 1px solid #CCCCCC;
                 border-right: 1px solid #333333;
@@ -112,27 +110,6 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
                 border-radius: .25rem;
             }
         </style>
-        <script>
-            var ans;
-            function SaveOption(option)
-            {
-                ans = option;
-            }
-            function SaveAndNext()
-            {
-                document.cookie = "optionselect = "+ans.value;
-                <?php 
-                    $fetchmcq = $_SESSION['mcqOption'];
-                    $cookieget = $_COOKIE['optionselect'];
-                    $fetchmcq[$page-2] = $cookieget;
-                    $_SESSION['mcqOption'] = $fetchmcq;
-                ?>
-            }
-            function SkipAndNext()
-            {
-                
-            }
-        </script>
     </head>
 
     <body>
@@ -237,7 +214,7 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-4">
-                    <form method="POST" action="cal_result.inc.php">
+                    <form method="POST" action="includes/cal_result.inc.php?page=<?php echo $page ?>">
                         <table class="table">
                             <tr>
                                 <td>#</td>
@@ -257,20 +234,23 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
                                 <tr>
                                     <td><?php echo $page ?></td>
                                     <?php
+                                    $_SESSION['curr_questionid'] = $rows['questionid'];
+                                    $_SESSION['mark_per'] = $rows['mark'];
                                     echo '<td><img class="img-fluid" src="data:image/jpeg;base64,' . base64_encode($rows['ques_pic']) . '" /></td>';
                                     ?>
-                                    <td><?php echo $rows["mark"]?></td>
+                                    <td><?php echo $rows["mark"] ?></td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td>
-                                        <input type="radio" id="optionA" value="1" onclick="SaveOption(this)"  name='<?php echo "ferin".$page ?>'><label for="optionA">A</label>
+                                        <input type="radio" id="optionA" value="1"  name='<?php echo  $page ?>'><label for="optionA">A</label>
                                         <br>
-                                        <input type="radio" id="optionB" value="2" onclick="SaveOption(this)"  name='<?php echo "ferin".$page ?>'><label for="optionB">B</label>
+                                        <input type="radio" id="optionB" value="2"  name='<?php echo  $page ?>'><label for="optionB">B</label>
                                         <br>
-                                        <input type="radio" id="optionC" value="3" onclick="SaveOption(this)"  name='<?php echo "ferin".$page ?>'><label for="optionC">C</label>
+                                        <input type="radio" id="optionC" value="3"  name='<?php echo  $page ?>'><label for="optionC">C</label>
                                         <br>
-                                        <input type="radio" id="optionD" value="4" onclick="SaveOption(this)"  name='<?php echo "ferin".$page ?>'><label for="optionD">D</label>
+                                        <input type="radio" id="optionD" value="4"  name='<?php echo  $page ?>'><label for="optionD">D</label>
+                                        <input type="radio" id="default" value="0" style="visibility:hidden;" checked name='<?php echo $page ?>'><label style="visibility:hidden;">default</label>
                                         </td>
                                     <td></td>
                                 </tr>
@@ -279,8 +259,23 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
                             }
                             ?>
                     <div class="option">
-                         <p><a onclick="SkipAndNext()" class="btn btn-warning" href="#">Skip And Next</a></p>
-                        <p><a onclick="SaveAndNext()" href="?page=<?php echo $page+1 ?>" class="btn btn-primary">Save and Next</a></p>
+                        <?php
+                        if($page < $len)
+                        {
+                            ?>
+                             <button type="submit" class="btn btn-primary" name="cal_result">Save and Next</button>
+                             <br>
+                            <br>
+                            <p><a class="btn btn-warning" href="exam.php?page=<?php echo $page+1 ?>">Skip And Next</a></p>
+                            <?php
+                        }
+                        else 
+                        {
+                            ?>
+                            <button type="Submit" class="btn btn-success" name="result">Complete Exam</button>
+                            <?php
+                        } 
+                        ?>
                     </div>
                     </form>
                 </div>
