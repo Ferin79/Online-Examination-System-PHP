@@ -60,7 +60,7 @@ else
 
     <body>
         <div class="logo">
-            <h1>CAREER EDUCATION</h1>
+            <h1>GRAVITY EDUCATION CENTER</h1>
         </div>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
             <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">

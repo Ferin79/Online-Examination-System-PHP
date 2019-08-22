@@ -115,7 +115,7 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
 
     <body>
         <div class="logo">
-            <h1>CAREER EDUCATION</h1>
+            <h1>GRAVITY EDUCATION CENTER</h1>
         </div>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
             <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
@@ -264,10 +264,12 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
                         if($page < $len)
                         {
                             ?>
-                             <button type="submit" class="btn btn-primary" name="cal_result">Save and Next</button>
-                             <br>
+                            <button type="submit" class="btn btn-primary" name="cal_result">Save and Next</button>
+                            &emsp;
+                            <a class="btn btn-warning" href="exam.php?page=<?php echo $page+1 ?>">Skip And Next</a>
                             <br>
-                            <p><a class="btn btn-warning" href="exam.php?page=<?php echo $page+1 ?>">Skip And Next</a></p>
+                            <br>
+                            <button type="Submit" class="btn btn-success" name="result">Complete Exam</button>
                             <?php
                         }
                         else 

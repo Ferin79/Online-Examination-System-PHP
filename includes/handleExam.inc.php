@@ -75,6 +75,10 @@
                     {
                         $notattemted++;
                     }
+                    else if($option[$i] == -1)
+                    {
+                        $notattemted++;
+                    }
                     else if($option[$i] != $rows['answer'])
                     {
                         $wrong++;

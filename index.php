@@ -42,7 +42,7 @@ $admin = "ferinpatel79@gmail.com";
 
 <body>
     <div class="logo">
-        <h1>CAREER EDUCATION</h1>
+        <h1>GRAVITY EDUCATION CENTER</h1>
     </div>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
         <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
@@ -151,7 +151,7 @@ $admin = "ferinpatel79@gmail.com";
             else 
             {
                   ?>
-                  <h2 class="welcome">Welcome To Career Education</h2>
+                  <h2 class="welcome">Welcome To Gravity Education</h2>
                   <?php 
             }
         ?>

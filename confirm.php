@@ -47,7 +47,7 @@ if(isset($_SESSION['log_in']) && isset($_SESSION['log_in'])==true)
 
 <body>
     <div class="logo">
-        <h1>CAREER EDUCATION</h1>
+        <h1>GRAVITY EDUCATION CENTER</h1>
     </div>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
         <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
@@ -192,7 +192,7 @@ if(isset($_SESSION['log_in']) && isset($_SESSION['log_in'])==true)
         </ul>
     </div>
     <form action="exam.php?page=1" method="GET">
-        <button type="submit" class="btn btn-primary" formaction="setSession.php">Submit and Start Exam</button>
+        <button type="submit" class="btn btn-primary" formaction="includes/setSession.inc.php">Submit and Start Exam</button>
     </form>
     <br>
     <br>
