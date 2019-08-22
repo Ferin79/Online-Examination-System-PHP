@@ -1,8 +1,9 @@
 <?php
     session_start();
-    require 'db.in.php';
+    require 'db.inc.php';
     $email = $_SESSION['email'];
     $option = array();
+    $page = 0;
     if(isset($_POST['cal_result']))
     {
         if(isset($_GET['page']))
@@ -15,26 +16,95 @@
         }
         else
         {
-            $query = "SELECT * FROM exam_live;";
+            
+        }
+        echo "inside first block";
+        $page++;
+        header("Location:../exam.php?page=$page");
+    }
+    if(isset($_POST['result']))
+    {
+        if(isset($_GET['page']))
+        {
+            $i = 0;
+            $correct = 0;
+            $wrong = 0;
+            $marks = 0.0;
+            $notattemted = 0;
+            $neg = 0.0;
+
+
+            $page = $_GET['page'];
+            $ans = $_POST[$page];
+            $option = $_SESSION['answer'];
+            $option[$page-1] = $ans;
+            $_SESSION['answer'] = $option;
+            $option = $_SESSION['answer'];
+            unset($_SESSION['answer']);
+
+            $query = "SELECT * FROM neg_marks LIMIT 1;";
             $stmt = mysqli_stmt_init($conn);
             if(!mysqli_stmt_prepare($stmt,$query))
             {
-                echo "SQL Error";
+                echo mysqli_stmt_error;
             }
             else 
             {
                 mysqli_stmt_execute($stmt);
                 $result = mysqli_stmt_get_result($stmt);
-                $rows = mysqli_num_rows($result);
-
-                for ($i=0; $i < $rows; $i++) 
-                { 
-                    $option[$i] = -1;
+                while($rows = mysqli_fetch_assoc($result))
+                {
+                    $neg = (float) $rows['neg'];
                 }
             }
-            $_SESSION['answer'] = $option;
+
+
+            $query = "SELECT * FROM exam_live;";
+            $stmt = mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($stmt,$query))
+            {
+                echo mysqli_stmt_error;
+            }
+            else 
+            {
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+                while($rows = mysqli_fetch_assoc($result))
+                {
+                    if($option[$i] == 0)
+                    {
+                        $notattemted++;
+                    }
+                    else if($option[$i] != $rows['answer'])
+                    {
+                        $wrong++;
+                        $marks = $marks - $neg;
+                    }
+                    else if($option[$i] == $rows['answer'])
+                    {
+                        $correct++;
+                        $marks = $marks + $rows['mark'];
+                    }
+                    else 
+                    {
+
+                    }
+                    $i++;
+                }
+
+                $query = "INSERT INTO exam_record (`email`,`marks`,`correct`,`wrong`,`notattemted`) VALUES (?,?,?,?,?)";
+                $stmt = mysqli_stmt_init($conn);
+                if(!mysqli_stmt_prepare($stmt,$query))
+                {
+                    echo mysqli_stmt_error;
+                }
+                else 
+                {
+                    mysqli_stmt_bind_param($stmt,"sssss",$email,$marks,$correct,$wrong,$notattemted);
+                    mysqli_stmt_execute($stmt);
+                }
+                header("Location:../result.php");
+            }
         }
-        $page++;
-        header("Location:../exam.php?page=$page");
     }
 ?>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 $admin = "ferinpatel79@gmail.com";
+require 'includes/db.inc.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +33,13 @@ $admin = "ferinpatel79@gmail.com";
         {
             font-size: 55px;
             color:#007bff;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+        }
+        .table_style 
+        {
             position: absolute;
             top:50%;
             left:50%;
@@ -91,7 +99,7 @@ $admin = "ferinpatel79@gmail.com";
                             {   
                   ?>
                         <li class="nav-item">
-                        <a class="nav-link" href="AdminResult.php">See Result</a>
+                        <a class="nav-link" href="#">See Result</a>
                         </li>
                   <?php
                             }
@@ -140,21 +148,46 @@ $admin = "ferinpatel79@gmail.com";
             </ul>
         </div>
     </nav>
-    <div class="hi">
-        <?php
-            if(isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
-            {
-                  ?>
-                  <h2 class="welcome">Welcome <?php echo $_SESSION['email'] ?></h2>
-                  <?php
-            }
-            else 
-            {
-                  ?>
-                  <h2 class="welcome">Welcome To Career Education</h2>
-                  <?php 
-            }
-        ?>
+
+    <div class="container table_style">
+        <table class="table table-striped table-dark">
+            <tr>
+                <td>Email</td>
+                <td>Total Marks</td>
+                <td>Correct Answer</td>
+                <td>Wrong Answer</td>
+                <td>Not Attemted</td>
+            </tr>
+            <?php 
+                $query = "SELECT * FROM exam_record";
+                $stmt = mysqli_stmt_init($conn);
+                if(!mysqli_stmt_prepare($stmt,$query))
+                {
+                    echo "SQL Error";
+                }
+                else 
+                {
+                    mysqli_stmt_execute($stmt);
+                    $result = mysqli_stmt_get_result($stmt);
+
+                    while($rows = mysqli_fetch_assoc($result))
+                    {
+                    ?>
+                    
+                    <tr>
+                        <td><?php echo $rows['email']?></td>
+                        <td><?php echo $rows['marks'] ?></td>
+                        <td><?php echo $rows['correct'] ?></td>
+                        <td><?php echo $rows['wrong'] ?></td>
+                        <td><?php echo $rows['notattemted'] ?></td>
+                    </tr>
+
+                    <?php
+
+                    }   
+                }
+                ?>
+        </table>
     </div>
 </body>
 

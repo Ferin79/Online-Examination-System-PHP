@@ -100,7 +100,7 @@ $email = $_SESSION['email'];
                             {   
                   ?>
                         <li class="nav-item">
-                        <a class="nav-link" href="#">See Result</a>
+                        <a class="nav-link" href="AdminResult.php">See Result</a>
                         </li>
                   <?php
                             }

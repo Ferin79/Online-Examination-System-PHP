@@ -21,6 +21,11 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
     if (isset($_GET['page'])) 
     {
         $page = $_GET['page'];
+        $answer = $_SESSION['answer'];
+        for($i = 0;$i<$len;$i++)
+        {
+            echo $answer[$i];
+        }
     } 
     else 
     {
@@ -35,10 +40,6 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <script>
-            window.history.forward();
-        </script>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -214,7 +215,7 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-4">
-                    <form method="POST" action="includes/cal_result.inc.php?page=<?php echo $page ?>">
+                    <form method="POST" action="includes/handleExam.inc.php?page=<?php echo $page ?>">
                         <table class="table">
                             <tr>
                                 <td>#</td>
@@ -284,6 +285,36 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
         <br>
         <br>
         <br>
+        <script>
+            $(document).ready(function(){
+                <?php 
+                if($answer[$page-1] == '1')
+                {
+                    echo "$('#optionA').attr('checked',true)"; 
+                }
+                else if($answer[$page-1] == '2')
+                {
+                    echo "$('#optionB').attr('checked',true)";
+                }
+                else if($answer[$page-1] == '3')
+                {
+                    echo "$('#optionC').attr('checked',true)";
+                }
+                else if($answer[$page-1] == '4')
+                {
+                    echo "$('#optionD').attr('checked',true)";
+                }
+                else if($answer[$page-1] == '0')
+                {
+                    echo "$('#default').attr('checked',true)";
+                }
+                else 
+                {
+
+                }
+                ?>
+            });
+        </script>
     </body>
 
     </html>

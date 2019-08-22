@@ -76,7 +76,7 @@ if (isset($_SESSION['log_in']) && isset($_SESSION['log_in']) == true) {
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Online Exam</a>
+                        <a class="nav-link" href="confirm.php">Online Exam</a>
                     </li>
                     <?php
                     if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) {
@@ -105,7 +105,7 @@ if (isset($_SESSION['log_in']) && isset($_SESSION['log_in']) == true) {
                         if ($_SESSION['email'] == $admin) {
                             ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">See Result</a>
+                                <a class="nav-link" href="AdminResult.php">See Result</a>
                             </li>
                         <?php
                         }

@@ -92,7 +92,7 @@ if(isset($_SESSION['log_in']) && isset($_SESSION['log_in'])==true)
                             {   
                   ?>
                         <li class="nav-item">
-                        <a class="nav-link" href="#">See Result</a>
+                        <a class="nav-link" href="AdminResult.php">See Result</a>
                         </li>
                   <?php
                             }
@@ -192,7 +192,7 @@ if(isset($_SESSION['log_in']) && isset($_SESSION['log_in'])==true)
         </ul>
     </div>
     <form action="exam.php?page=1" method="GET">
-        <button type="submit" class="btn btn-primary" formaction="exam.php?page=1">Submit and Start Exam</button>
+        <button type="submit" class="btn btn-primary" formaction="setSession.php">Submit and Start Exam</button>
     </form>
     <br>
     <br>
