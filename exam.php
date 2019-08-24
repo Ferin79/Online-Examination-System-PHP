@@ -5,33 +5,39 @@ $email = $_SESSION['email'];
 require 'includes/db.inc.php';
 if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true) 
 {
-    $query = "SELECT * FROM exam_live;";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $query)) 
+    if(isset($_SESSION['answer']) && isset($_SESSION['start_time']))
     {
-        echo "SQL Error";
-    } 
-    else 
-    {
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        $rows = mysqli_num_rows($result);
-        $len = $rows;
-    }
-    if (isset($_GET['page'])) 
-    {
-        $page = $_GET['page'];
-        $answer = $_SESSION['answer'];
-        for($i = 0;$i<$len;$i++)
+        $query = "SELECT * FROM exam_live;";
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $query)) 
         {
-            echo $answer[$i];
+            echo "SQL Error";
+        } 
+        else 
+        {
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            $rows = mysqli_num_rows($result);
+            $len = $rows;
         }
-    } 
+        if (isset($_GET['page'])) 
+        {
+            $page = $_GET['page'];
+            $answer = $_SESSION['answer'];
+            for($i = 0;$i<$len;$i++)
+            {
+                echo $answer[$i];
+            }
+        }
+        else 
+        {
+            $page = 1;
+        }
+    }
     else 
     {
-        $page = 1;
+        header("location:./confirm.php");
     }
-    
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -110,6 +116,12 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
                 border-left: 1px solid #CCCCCC;
                 border-radius: .25rem;
             }
+            .time_css
+		    {
+                font-size:35px;
+                position: absolute;
+                top:25%px;
+            }  
         </style>
     </head>
 
@@ -150,72 +162,14 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
         <br>
         <br>
         <br>
-        <div class="conatiner">
-            <div class="row justify-content-center">
-                <div class="col-12 col-sm-6 col-md-4">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <?php
-                            if ($page > 1) {
-                                ?>
-                                <li class="page-item"><a class="page-link" href="?page=<?php echo ($page - 1); ?>">Previous</a></li>
-                            <?php
-                            }
-                            ?>
-                            <?php
-                            if ($page + 1 <= $rows) {
-                                ?>
-                                <li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 1); ?>"><?php echo ($page + 1) ?></a></li>
-                            <?php
-                            }
-                            ?>
-                            <?php
-                            if ($page + 2 <= $rows) {
-                                ?>
-                                <li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 2); ?>"><?php echo ($page + 2) ?></a></li>
-                            <?php
-                            }
-                            ?>
-                            <?php
-                            if ($page + 3 <= $rows) {
-                                ?>
-                                <li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 3); ?>"><?php echo ($page + 3) ?></a></li>
-                            <?php
-                            }
-                            ?>
-                            <?php
-                            if ($page + 4 <= $rows) {
-                                ?>
-                                <li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 4); ?>"><?php echo ($page + 4) ?></a></li>
-                            <?php
-                            }
-                            ?>
-                            <?php
-                            if ($page + 5 <= $rows) {
-                                ?>
-                                <li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 5); ?>"><?php echo ($page + 5) ?></a></li>
-                            <?php
-                            }
-                            ?>
-                            <?php
-                            if ($page + 6 <= $rows) {
-                                ?>
-                                <li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 1); ?>">Next</a></li>
-                            <?php
-                            }
-                            ?>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
+        <section class="time_css"><b>[Time-Left: <span id="time"></span></b>]</section>
         <br>
         <br>
         <br>
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-4">
-                    <form method="POST" action="includes/handleExam.inc.php?page=<?php echo $page ?>">
+                    <form method="POST" name="ferin" action="includes/handleExam.inc.php?page=<?php echo $page ?>">
                         <table class="table">
                             <tr>
                                 <td>#</td>
@@ -269,7 +223,7 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
                             <a class="btn btn-warning" href="exam.php?page=<?php echo $page+1 ?>">Skip And Next</a>
                             <br>
                             <br>
-                            <button type="Submit" class="btn btn-success" name="result">Complete Exam</button>
+                            <button type="Submit" class="btn btn-success" id="result" name="result">Complete Exam</button>
                             <?php
                         }
                         else 
@@ -315,10 +269,26 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
 
                 }
                 ?>
+
+                setInterval(function () {
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.open("GET","includes/timeShare.inc.php",false);
+                    xmlhttp.send(null);
+                    if(xmlhttp.responseText == "00:00:00")
+                    {
+                        alert("Time's Up. Exam Will submitted Automatically");
+                        document.getElementById("result").click();
+                    }
+                    else
+                    {
+                        document.getElementById("time").innerHTML = xmlhttp.responseText;
+                    }
+                }, 1000);
+
+                
             });
         </script>
     </body>
-
     </html>
 <?php
 } else {

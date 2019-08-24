@@ -50,6 +50,18 @@ if(isset($_POST['Clear_exam']))
     {
         mysqli_stmt_execute($stmt);
     }
+
+    $query = "TRUNCATE TABLE `exam_info`;";
+    
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt,$query))
+    {
+        echo "SQL Error";
+    }
+    else 
+    {
+        mysqli_stmt_execute($stmt);
+    }
     header("Location:../GenerateQuestion.php?success=clear");
 }
 else 

@@ -162,7 +162,7 @@ if(isset($_SESSION['log_in']) && isset($_SESSION['log_in'])==true)
             <li>1. Exam is of Mutliple Type Question.</li>
             <li>2. All Question are Complusory.</li>
             <li>3. As soon as, you click below submit, automatic timer will start.</li>
-            <li>4. You Have to complete your exma within time limit.</li>
+            <li>4. You Have to complete your exam within time limit.</li>
             <li>5. Exam Will Auto-Submit after timer expire.</li>
             <br>
             <br>

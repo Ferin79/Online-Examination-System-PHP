@@ -193,8 +193,8 @@ if (isset($_SESSION['log_in']) && isset($_SESSION['log_in']) == true) {
                                 <label for="exampleInputPassword1">Negative Marking</label>
                                 <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Negative Marks" name="neg_marks">
                             </div>
+                            <button type="submit" class="btn btn-primary btn-block" name="add_exam" formmethod="POST" formaction="includes/GenerateQuestion.inc.php">Add Questions To Exam</button>
                             <button type="submit" class="btn btn-danger btn-block" name="Clear_exam" formmethod="POST" formaction="includes/ClearDB.inc.php">Clear Old Exam From Database</button>
-                            <button type="submit" class="btn btn-primary btn-block" name="add_exam" formmethod="POST" formaction="includes/GenerateQuestion.inc.php">Add</button>
                         </form>
                     </div>
                 </div>

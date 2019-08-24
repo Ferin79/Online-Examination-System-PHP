@@ -26,6 +26,8 @@
     {
         if(isset($_GET['page']))
         {
+            unset($_SESSION['start_time']);
+            unset($_SESSION['end_time']);
             $i = 0;
             $correct = 0;
             $wrong = 0;
