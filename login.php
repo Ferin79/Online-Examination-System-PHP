@@ -109,7 +109,7 @@ else
                             else if ($_GET['error'] == "loginplease") {
                                 echo '<p class="error">Please Login</p>';
                             }
-                        }
+                        }   
                         ?>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>

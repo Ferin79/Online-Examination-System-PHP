@@ -26,7 +26,6 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
             $answer = $_SESSION['answer'];
             for($i = 0;$i<$len;$i++)
             {
-                echo $answer[$i];
             }
         }
         else 
