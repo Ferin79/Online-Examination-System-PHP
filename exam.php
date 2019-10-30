@@ -86,7 +86,7 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
             }
 
             table {
-                background: lightskyblue;
+                background: white;
             }
 
             tr td {
@@ -232,6 +232,26 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
                             <?php
                         } 
                         ?>
+                        <br>
+                        <br>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                        <?php
+                        if($page < $len)
+                        {
+                            ?>
+                            <li class="page-item"><a class="page-link" href="exam.php?page=<?php echo $page+1 ?>">Next</a></li>
+                            <?php
+                        }
+                        if($page > 1)
+                        {
+                            ?>                       
+                            <li class="page-item"><a class="page-link" href="exam.php?page=<?php echo $page-1 ?>">Previous</a></li>
+                        <?php
+                        }
+                        ?>
+                        </ul>
+                        </nav>
                     </div>
                     </form>
                 </div>

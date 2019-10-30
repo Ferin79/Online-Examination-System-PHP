@@ -42,9 +42,9 @@ $email = $_SESSION['email'];
         .table_style 
         {
             position: absolute;
-            top:50%;
+            top:70%;
             left:50%;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%,-70%);
         }
     </style>
 </head>
@@ -152,6 +152,7 @@ $email = $_SESSION['email'];
     <div class="container table_style">
         <table class="table table-striped table-dark">
             <tr>
+                <td>Email</td>
                 <td>Total Marks</td>
                 <td>Correct Answer</td>
                 <td>Wrong Answer</td>
@@ -175,6 +176,7 @@ $email = $_SESSION['email'];
                     ?>
                     
                     <tr>
+                        <td><?php echo $rows['email'] ?></td>
                         <td><?php echo $rows['marks'] ?></td>
                         <td><?php echo $rows['correct'] ?></td>
                         <td><?php echo $rows['wrong'] ?></td>

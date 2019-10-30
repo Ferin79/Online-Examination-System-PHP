@@ -186,6 +186,13 @@ if (isset($_SESSION['log_in']) && isset($_SESSION['log_in']) == true) {
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label>Language</label>
+                                <select id="ques_lang" name="ques_lang" class="ques_type form-control">
+                                    <option value="0">English</option>
+                                    <option value="1">Gujarati</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="exampleInputPassword1">Enter Number of Question</label>
                                 <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Enter Number of Question" name="ques_num">
                             </div>

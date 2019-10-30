@@ -190,7 +190,14 @@ if (isset($_SESSION['log_in']) && isset($_SESSION['log_in']) == true) {
                             <select id="ques_type" name="ques_type" class="ques_type form-control">
                                 <option value="0">Easy</option>
                                 <option value="1">Hard</option>
+                            </select>
+                        </div>
 
+                        <div class="form-group">
+                            <label>Language</label>
+                            <select id="ques_lang" name="ques_lang" class="ques_type form-control">
+                                <option value="0">English</option>
+                                <option value="1">Gujarati</option>
                             </select>
                         </div>
                         <div class="form-group">
