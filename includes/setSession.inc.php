@@ -19,6 +19,8 @@ else
     }
 }
 $_SESSION['answer'] = $option;
+
+
 $query = "SELECT * FROM exam_info LIMIT 1";
 $stmt = mysqli_stmt_init($conn);
 if(!mysqli_stmt_prepare($stmt,$query))

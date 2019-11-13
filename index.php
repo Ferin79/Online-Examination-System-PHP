@@ -9,15 +9,9 @@ $admin = "ferinpatel79@gmail.com";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-    <script src="./includes/jquery.counterup.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <title>Career Education</title>
+    <title>Gravity Education</title>
     <style>
         *
         {
@@ -34,6 +28,26 @@ $admin = "ferinpatel79@gmail.com";
         .logo {
             padding-top: 25px;
             padding-bottom:25px;
+        }
+        .intro 
+        {
+            height:100vh;
+            width:100%;
+        }
+        .introHead 
+        {
+            height:80vh; 
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+        }
+        .introHead h1
+        {
+            font-size:90px;
+        }
+        .introHead h3
+        {
+            font-size:40px;
         }
         .welcome 
         {
@@ -99,7 +113,48 @@ $admin = "ferinpatel79@gmail.com";
         {
             font-size:50px;
         }
-
+        .footerMain
+        {
+            width:100%;
+            height:45vh;
+            margin-top:50px;
+            background:#2d3436;
+            color:white;
+            text-align:center;
+        }
+        .iconsHere
+        {
+            width:75%;
+            height:30vh;
+            display:flex;
+            justify-content:space-evenly;
+            align-items:center;
+        }
+        .iconsHere i 
+        {
+            transition: 0.2s ease-in-out;
+        }
+        .iconsHere i:hover 
+        {
+            cursor:pointer;
+            transform:translateY(-20px);
+            color:lightblue;
+        }
+        .icon-cog {
+            color: pink;
+        }
+        .navbar-dark .navbar-nav .nav-link 
+        {
+            font-size: 18px;
+            color: rgba(255,255,255,.5);
+        }
+        .moreInfo 
+        {
+            width:25%;
+            text-align:center;
+            padding-top:50px;
+            color:white;
+        }
         @media (max-width: 768px)
         {
             .aboutGravity 
@@ -125,20 +180,39 @@ $admin = "ferinpatel79@gmail.com";
             {
                 font-size:35px;
             }
-        }
-        .navbar-dark .navbar-nav .nav-link 
-        {
-            font-size: 18px;
-            color: rgba(255,255,255,.5);
+            .introHead h1
+            {
+                font-size:60px;
+            }
+            .introHead h3 
+            {
+                font-size:20px;
+            }
+            .introHead 
+            {
+                height:20vh;
+            }
+            .introImg img
+            {
+                padding-top:50px;
+                height:350px;
+                width:350px;
+            }
+            .footerMain
+            {
+                width:100%;
+                height:80vh;
+                margin-top:50px;
+                background:#2d3436;
+                color:white;
+                text-align:center;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="logo">
-        <h1>GRAVITY EDUCATION CENTER</h1>
-    </div>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
         <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
             <span class="navbar-toggler-icon"> </span>
         </button>
@@ -234,69 +308,18 @@ $admin = "ferinpatel79@gmail.com";
             </ul>
         </div>
     </nav>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000" data-pasue="false">
-    <div class="col-xl-auto col-sm-8" style="padding:0px">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100" src="./images/caro-5.png" alt="First slide">
-                <div class="carousel-caption">
-                    <p>Education is the passport to the future, for tomorrow belongs to those who prepare for it today
-                    </p>
-                    <h5>-Malcolm X</h5>
+    <div class="intro">
+        <div style="padding-top:50px;" class="container">
+            <div class="row">
+                <div class="col introHead">
+                    <h1>Gravity</h1>
+                    <h3>Education Center</h3>
                 </div>
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="./images/caro-8.png" alt="Second slide">
-                <div class="carousel-caption">
-                    <p>Knowledge is power. Information is liberating. Education is the premise of progress, in every society, in every family.
-                    </p>
-                    <h5>-Kofi Annan</h5>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="./images/caro-3.png" alt="Third slide">
-                <div class="carousel-caption">
-                    <p>Education is the key to success in life, and teachers make a lasting impact in the lives of their students.
-                    </p>
-                    <h5>-Solomon Ortiz</h5>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="./images/caro-4.png" alt="Third slide">
-                <div class="carousel-caption">
-                    
-                    <p>The function of education is to teach one to think intensively and to think critically. Intelligence plus character - that is the goal of true education.
-                    </p>
-                    <h5>-Martin Luther King Jr.</h5>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="./images/caro-7.png" alt="Third slide">
-                <div class="carousel-caption">
-                    <p>The purpose of education is to make good human beings with skill and expertise... Enlightened human beings can be created by teachers.
-                    </p>
-                    <h5>-A.B.J Abdul Kalam</h5>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="./images/caro-6.png" alt="Third slide">
-                <div class="carousel-caption">
-                    
-                    <p>Everyone who remembers his own education remembers teachers, not methods and techniques. The teacher is the heart of the educational system.
-                    </p>
-                    <h5>-Sydney Hook</h5>
+                <div class="col introImg">
+                    <img src="./images/header.svg" height="550px" width="550px" alt="" srcset="">
                 </div>
             </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-        </a>
-    </div>
     </div>
     <br>
     <br>
@@ -404,7 +427,7 @@ $admin = "ferinpatel79@gmail.com";
                     <img src="./images/discussion.png" height="150px" widht="150px" alt="">
                 </div>
                 <div class="text">
-                <h1><span class="counter">150</span> <span>+<span></h1>
+                    <h1><span class="counter">150</span> <span>+<span></h1>
                     <h4>Students</h4>
                 </div>
             </div>
@@ -413,20 +436,45 @@ $admin = "ferinpatel79@gmail.com";
                     <img src="./images/student.png" height="150px" widht="150px" alt="">
                 </div>
                 <div class="text">
-                <h1><span class="counter">75</span> <span>+<span></h1>
+                    <h1><span class="counter">75</span> <span>+<span></h1>
                     <h4>More than 80% Marks Student</h4>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function( $ ){
-            $('.counter').counterUp({
-                delay: 10,
-                time: 1000
-            });
-        });
-    </script>
+    </div>
+    <br>
+    <div class="footerMain">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-6 iconsHere">
+                    <i class="fa fa-4x icon-cog fa-facebook"></i>
+                    <i class="fa fa-4x icon-cog fa-instagram"></i>
+                    <i class="fa fa-4x icon-cog fa-phone"></i>
+                    <i class="fa fa-4x icon-cog fa-envelope"></i>
+                </div>
+                <div class="col-12 col-sm-6 moreInfo">
+                    <h5>Address:</h5>
+                    <p>Kim Surat</p>
+
+                    <h5>Phone:</h5>
+                    <p>+91 77780 16568</p>
+
+                    <h5>Email:</h5>
+                    <p>umangpatel5067@gmail.com</p>
+
+                </div>
+            </div>
+        </div>
+        <br>
+        All Copyright Reserved.
+        <br>
+        Ferin Patel
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha256-JtQPj/3xub8oapVMaIijPNoM0DHoAtgh/gwFYuN5rik=" crossorigin="anonymous"></script>
 </body>
 
 </html>

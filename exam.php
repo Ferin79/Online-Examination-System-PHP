@@ -120,7 +120,44 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
                 font-size:35px;
                 position: absolute;
                 top:25%px;
-            }  
+            }
+            .quesNavInfo
+            {
+                margin-top:100px;
+                width:350px;
+                background-color:white;
+                display:flex;
+                justify-content:space-around;
+                align-items:center;
+            }
+            .quesNavBar
+            {
+                padding-top:50px;
+                width:350px;
+                display:flex;
+                flex-wrap:wrap;
+                justify-content:space-evenly;
+                align-items:center;
+                background-color:white;
+            }
+            .bubbleDone,  .bubbleNot
+            {
+                height:50px;
+                width:50px;
+                font-size:20px;
+                color:white;
+                padding:8px;
+                text-align:center;
+                border-radius:50%;
+            }
+            .bubbleDone
+            {
+                background-color:green;
+            }
+            .bubbleNot 
+            {
+                background-color:#000;
+            }
         </style>
     </head>
 
@@ -190,8 +227,9 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
                                     <?php
                                     $_SESSION['curr_questionid'] = $rows['questionid'];
                                     $_SESSION['mark_per'] = $rows['mark'];
-                                    echo '<td><img class="img-fluid" src="data:image/jpeg;base64,' . base64_encode($rows['ques_pic']) . '" /></td>';
+                                    //echo '<td><img class="img-fluid" src="data:image/jpeg;base64,'.base64_encode($rows['ques_pic']).'" /></td>';
                                     ?>
+                                    <td><img class="img-fluid" src="/includes/showImages.inc.php?id=<?php echo $rows['questionid'] ?>"/></td>
                                     <td><?php echo $rows["mark"] ?></td>
                                 </tr>
                                 <tr>
@@ -256,6 +294,28 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
                     </form>
                 </div>
             </div>
+            <div class="quesNavInfo">
+                <div class="bubbleDone"></div><span>Attemted</span>
+                <div class="bubbleNot"></div><span>Not Attemted</span>
+            </div>
+            <div class="quesNavBar">
+                <?php
+                    for ($i=0; $i < $len; $i++) { 
+                        if($answer[$i] == '1' || $answer[$i] == '2' || $answer[$i] == '4' || $answer[$i] == '3')
+                        {
+                            ?>
+                            <a href="exam.php?page=<?php echo $i+1 ?>"><div class="bubbleDone"><?php echo $i+1; ?></div></a>
+                            <?php
+                        }
+                        else
+                        {
+                            ?>
+                           <a href ="exam.php?page=<?php echo $i+1 ?>"> <div class="bubbleNot"><?php echo $i+1; ?></div></a>
+                            <?php
+                        }
+                    }
+                ?>
+            </div>
         </div>
         <br>
         <br>
@@ -303,6 +363,8 @@ if (isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
                         document.getElementById("time").innerHTML = xmlhttp.responseText;
                     }
                 }, 1000);
+
+
 
                 
             });
