@@ -252,6 +252,19 @@ $admin = "ferinpatel79@gmail.com";
                             }
                         }
                   ?>
+                  <?php
+                        if(isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
+                        {
+                            if($_SESSION['email'] == $admin)
+                            {   
+                  ?>
+                        <li class="nav-item">
+                        <a class="nav-link" href="GenerateCode.php">Generate Register Code</a>
+                        </li>
+                  <?php
+                            }
+                        }
+                  ?>
                    <?php
                         if(isset($_SESSION['log_in']) && $_SESSION['log_in'] == true)
                         {
@@ -454,14 +467,13 @@ $admin = "ferinpatel79@gmail.com";
                     <i class="fa fa-4x icon-cog fa-envelope"></i>
                 </div>
                 <div class="col-12 col-sm-6 moreInfo">
-                    <h5>Address:</h5>
-                    <p>Kim Surat</p>
+                    
 
                     <h5>Phone:</h5>
-                    <p>+91 77780 16568</p>
+                    <p>+91 91060 54633</p>
 
                     <h5>Email:</h5>
-                    <p>umangpatel5067@gmail.com</p>
+                    <p>ferinpatel79@gmail.com</p>
 
                 </div>
             </div>

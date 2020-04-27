@@ -7,7 +7,6 @@
         $chapterid = $_POST['chapterid'];
         $ques_type = $_POST['ques_type'];
         $ques_lang = $_POST['ques_lang'];
-        echo $ques_lang;
         $ques_img = addslashes(file_get_contents($_FILES['ques_img']['tmp_name']));
         $marks = $_POST['marks'];
         $answer = $_POST['answer'];
@@ -19,6 +18,7 @@
         if(!mysqli_stmt_prepare($stmt,$query))
         {
             echo "SQL Error";
+            echo mysqli_stmt_error($stmt);
             header("Location:../AddQuestion.php?error=fail");    
         }
         else 
